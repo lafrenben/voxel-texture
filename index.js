@@ -263,8 +263,16 @@ Texture.prototype.paint = function(mesh, materials) {
     } else {
       atlasuv = uvrot(atlasuv, -90);
     }
+    var translator = function(p) {
+      console.log(p);
+      var atlasidx = p.x;
+      console.log(atlasidx);
+      p.set(atlasuv[atlasidx][0], 1-atlasuv[atlasidx][1]);
+    };
+
     for (var j = 0; j < mesh.geometry.faceVertexUvs[0][i].length; j++) {
-      mesh.geometry.faceVertexUvs[0][i][j].set(atlasuv[j][0], 1 - atlasuv[j][1]);
+      translator(mesh.geometry.faceVertexUvs[0][i][j]);
+      //mesh.geometry.faceVertexUvs[0][i][j].set(atlasuv[j][0], 1 - atlasuv[j][1]);
     }
   });
 
