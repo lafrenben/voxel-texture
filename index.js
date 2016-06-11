@@ -19,12 +19,12 @@ function Texture(opts) {
   this.options = defaults(opts || {}, {
     crossOrigin: 'Anonymous',
     materialParams: defaults(opts.materialParams || {}, {
-      ambient: 0xbbbbbb,
+      color: 0xbbbbbb,
       transparent: false,
       side: this.THREE.DoubleSide,
     }),
     materialTransparentParams: defaults(opts.materialTransparentParams || {}, {
-      ambient: 0xbbbbbb,
+      color: 0xbbbbbb,
       transparent: true,
       side: this.THREE.DoubleSide,
       //depthWrite: false,
@@ -264,9 +264,7 @@ Texture.prototype.paint = function(mesh, materials) {
       atlasuv = uvrot(atlasuv, -90);
     }
     var translator = function(p) {
-      console.log(p);
       var atlasidx = p.x;
-      console.log(atlasidx);
       p.set(atlasuv[atlasidx][0], 1-atlasuv[atlasidx][1]);
     };
 
